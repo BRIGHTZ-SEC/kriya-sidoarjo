@@ -69,4 +69,4 @@ npx serve .        # atau buka index.html langsung
 
 ## Dibuat oleh
 
-M Bayu Pradana
+Bima Ramadhan Kartika AKA BRIGHTZSEC
