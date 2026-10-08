@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Panel Admin — Toko Kriya Sidoarjo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script src="assets/js/theme.js"></script>
+<link rel="stylesheet" href="assets/css/style.css">
+<link rel="stylesheet" href="assets/css/admin.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📊</text></svg>">
+</head>
+<body class="admin-body">
+
+<!-- ========================= LOGIN ========================= -->
+<div class="admin-login" id="adminLogin">
+  <form class="admin-login-card" id="adminLoginForm">
+    <div class="row-between">
+      <span class="brand-mark" style="width:46px;height:46px;font-size:22px;border-radius:14px">🪶</span>
+      <button class="icon-btn theme-toggle" data-theme-toggle aria-label="Aktifkan tema gelap" title="Aktifkan tema gelap">🌙</button>
+    </div>
+    <h1 style="font-size:21px;margin-top:14px">Panel Admin</h1>
+    <p class="muted small">Toko Kriya Sidoarjo. Masuk untuk mengelola produk dan pesanan.</p>
+    <div class="alert alert-error hidden" id="loginError" style="margin:14px 0"></div>
+    <div class="field">
+      <label for="adEmail">Email</label>
+      <input class="input" type="email" id="adEmail" placeholder="admin@tokokriya.id" value="admin@tokokriya.id">
+    </div>
+    <div class="field">
+      <label for="adPass">Password</label>
+      <input class="input" type="password" id="adPass" placeholder="••••••" value="admin123">
+    </div>
+    <button class="btn btn-primary btn-lg btn-block" type="submit">Masuk</button>
+    <p class="tiny muted center" style="margin-top:12px">Akun demo: admin@tokokriya.id / admin123</p>
+    <a href="index.html" class="btn btn-ghost btn-block btn-sm" style="margin-top:6px">Kembali ke toko</a>
+  </form>
+</div>
+
+<!-- ========================= APP ========================= -->
+<div class="admin-app hidden" id="adminApp">
+  <aside class="admin-side" id="adminSide">
+    <a href="index.html" class="brand">
+      <span class="brand-mark">🪶</span>
+      <span class="brand-text">
+        <span class="brand-name">Toko Kriya</span>
+        <span class="brand-sub">Admin</span>
+      </span>
+    </a>
+
+    <nav class="admin-nav" id="adminNav">
+      <button class="admin-nav-link is-active" data-view="dashboard"><span>📊</span> Dashboard</button>
+      <button class="admin-nav-link" data-view="orders"><span>🧾</span> Pesanan <b class="nav-pill" id="navOrderCount">0</b></button>
+      <button class="admin-nav-link" data-view="products"><span>📦</span> Produk</button>
+      <button class="admin-nav-link" data-view="reviews"><span>⭐</span> Ulasan <b class="nav-pill" id="navReviewCount">0</b></button>
+      <button class="admin-nav-link" data-view="vouchers"><span>🎟️</span> Voucher</button>
+      <button class="admin-nav-link" data-view="customers"><span>👥</span> Pembeli</button>
+    </nav>
+
+    <div class="admin-side-foot">
+      <a href="index.html" class="btn btn-sm btn-block">Lihat Toko</a>
+      <button class="btn btn-sm btn-danger btn-block" id="adminLogout" style="margin-top:8px">Keluar</button>
+    </div>
+  </aside>
+
+  <main class="admin-main">
+    <header class="admin-top">
+      <button class="icon-btn burger" id="adminBurger" style="display:none" aria-label="Menu">☰</button>
+      <div class="grow">
+        <h2 id="adminViewTitle">Dashboard</h2>
+        <p class="small muted" id="adminViewSub">Ringkasan toko hari ini</p>
+      </div>
+      <div class="row" style="gap:10px">
+        <button class="icon-btn theme-toggle" data-theme-toggle aria-label="Aktifkan tema gelap" title="Aktifkan tema gelap">🌙</button>
+        <span class="badge badge-outline" id="adminClock">—</span>
+        <button class="avatar" id="adminAvatar" title="Akun">A</button>
+      </div>
+    </header>
+
+    <div class="admin-body-pad">
+      <section class="admin-view" id="view-dashboard"></section>
+      <section class="admin-view hidden" id="view-orders"></section>
+      <section class="admin-view hidden" id="view-products"></section>
+      <section class="admin-view hidden" id="view-reviews"></section>
+      <section class="admin-view hidden" id="view-vouchers"></section>
+      <section class="admin-view hidden" id="view-customers"></section>
+    </div>
+  </main>
+</div>
+
+<!-- ========================= MODAL ========================= -->
+<div class="overlay" id="overlay"></div>
+
+<div class="modal" id="productFormModal" role="dialog" aria-modal="true">
+  <div class="modal-card">
+    <header class="modal-head">
+      <h3 id="pfTitle">Tambah Produk</h3>
+      <button class="icon-btn" data-close aria-label="Tutup">✕</button>
+    </header>
+    <div class="modal-body">
+      <div class="alert alert-error hidden" id="pfError" style="margin-bottom:14px"></div>
+      <form class="form-grid" id="productForm" novalidate>
+        <div class="form-row">
+          <div class="field">
+            <label for="pfName">Nama produk</label>
+            <input class="input" id="pfName" placeholder="Contoh: Batik Tulis Motif Naga">
+          </div>
+          <div class="field">
+            <label for="pfCat">Kategori</label>
+            <select class="input" id="pfCat"></select>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="field">
+            <label for="pfPrice">Harga (Rp)</label>
+            <input class="input" id="pfPrice" inputmode="numeric" placeholder="150000">
+          </div>
+          <div class="field">
+            <label for="pfStock">Stok</label>
+            <input class="input" id="pfStock" inputmode="numeric" placeholder="20">
+            <span class="hint" id="pfStockHint">Untuk produk bervariasi, stok total dihitung dari setiap opsi.</span>
+          </div>
+        </div>
+        <div class="field">
+          <label for="pfVariantName">Nama variasi (opsional)</label>
+          <input class="input" id="pfVariantName" maxlength="30" placeholder="Contoh: Ukuran atau Warna">
+        </div>
+        <div class="field">
+          <label for="pfVariants">Pilihan variasi dan stok</label>
+          <textarea class="input" id="pfVariants" rows="4" placeholder="39 | 4&#10;40 | 6&#10;41 | 3"></textarea>
+          <span class="hint">Satu pilihan per baris: Nama opsi | stok. Kombinasi juga bisa, misalnya Hitam / M | 3. Kosongkan untuk produk tanpa variasi.</span>
+        </div>
+        <div class="form-row">
+          <div class="field">
+            <label for="pfDiscount">Diskon (%)</label>
+            <input class="input" id="pfDiscount" inputmode="numeric" placeholder="0">
+            <span class="hint">Nol berarti tanpa diskon. Diskon tampil di harga produk dan banner promo otomatis.</span>
+          </div>
+          <div class="field">
+            <label for="pfWeight">Berat (kg)</label>
+            <input class="input" id="pfWeight" inputmode="decimal" placeholder="0.5">
+          </div>
+        </div>
+        <div class="field">
+          <label for="pfImages">Foto produk</label>
+          <input class="input" type="file" id="pfImages" accept="image/*" multiple>
+          <span class="hint">Wajib minimal 1 foto. Maksimal 4 foto; gambar dikecilkan otomatis agar hemat penyimpanan browser.</span>
+        </div>
+        <div class="field">
+          <label class="check-field" for="pfFeatured">
+            <input type="checkbox" id="pfFeatured">
+            <span class="check-box" aria-hidden="true"></span>
+            <span class="check-text">
+              <b>Tampilkan sebagai produk unggulan</b>
+              <span class="hint">Muncul di bagian "Produk Unggulan" di halaman depan dan dapat label bintang.</span>
+            </span>
+          </label>
+        </div>
+        <div class="field hidden" id="pfImageWrap">
+          <label>Foto saat ini</label>
+          <div class="img-strip" id="pfImageStrip"></div>
+          <span class="hint">Beri tanda centang untuk foto yang dipakai sebagai foto utama.</span>
+        </div>
+        <div class="field">
+          <label for="pfShort">Ringkasan singkat</label>
+          <input class="input" id="pfShort" maxlength="120" placeholder="Satu kalimat untuk kartu produk">
+        </div>
+        <div class="field">
+          <label for="pfDesc">Deskripsi lengkap</label>
+          <textarea class="input" id="pfDesc" placeholder="Bahan, ukuran, proses pembuatan, dan informasi penting lain"></textarea>
+        </div>
+        <div class="form-row">
+          <div class="field">
+            <label for="pfMaterial">Bahan</label>
+            <input class="input" id="pfMaterial" placeholder="Contoh: katun prima">
+          </div>
+          <div class="field">
+            <label for="pfDimensions">Ukuran atau variasi</label>
+            <input class="input" id="pfDimensions" placeholder="Contoh: 200 × 110 cm">
+          </div>
+        </div>
+        <div class="field">
+          <label for="pfCare">Petunjuk perawatan</label>
+          <input class="input" id="pfCare" placeholder="Contoh: cuci tangan dengan air dingin">
+        </div>
+        <div class="field">
+          <label for="pfTags">Label</label>
+          <input class="input" id="pfTags" placeholder="Handmade, Katun Prima, Siap Pakai">
+          <span class="hint">Pisahkan dengan koma.</span>
+        </div>
+      </form>
+    </div>
+    <footer class="modal-foot">
+      <button class="btn" data-close>Batal</button>
+      <button class="btn btn-primary" id="pfSave">Simpan Produk</button>
+    </footer>
+  </div>
+</div>
+
+<div class="modal" id="orderModal" role="dialog" aria-modal="true">
+  <div class="modal-card">
+    <header class="modal-head">
+      <h3 id="odTitle">Detail Pesanan</h3>
+      <button class="icon-btn" data-close aria-label="Tutup">✕</button>
+    </header>
+    <div class="modal-body" id="orderBody"></div>
+    <footer class="modal-foot" id="orderFoot"></footer>
+  </div>
+</div>
+
+<div class="modal" id="reviewReplyModal" role="dialog" aria-modal="true">
+  <div class="modal-card">
+    <header class="modal-head">
+      <h3>Balas Ulasan <span class="muted small" id="rrId"></span></h3>
+      <button class="icon-btn" data-close aria-label="Tutup">✕</button>
+    </header>
+    <div class="modal-body">
+      <div class="review-box" style="margin-bottom:14px">
+        <header><span id="rrName"></span></header>
+        <div class="rb-body">
+          <div class="small" id="rrText"></div>
+        </div>
+      </div>
+      <div class="field">
+        <label for="rrInput">Balasan toko</label>
+        <textarea class="input" id="rrInput" rows="3" placeholder="Contoh: Terima kasih, kamiwią jamin kualitas setiap pesanan."></textarea>
+        <span class="hint">Kosongkan lalu simpan untuk menghapus balasan yang ada.</span>
+      </div>
+    </div>
+    <footer class="modal-foot">
+      <button class="btn" data-close>Batal</button>
+      <button class="btn btn-primary" id="rrSave">Simpan Balasan</button>
+    </footer>
+  </div>
+</div>
+
+<div class="modal" id="voucherFormModal" role="dialog" aria-modal="true">
+  <div class="modal-card">
+    <header class="modal-head">
+      <h3 id="vfTitle">Tambah Voucher</h3>
+      <button class="icon-btn" data-close aria-label="Tutup">✕</button>
+    </header>
+    <div class="modal-body">
+      <div class="alert alert-error hidden" id="vfError" style="margin-bottom:14px"></div>
+      <form class="form-grid" id="voucherForm" novalidate>
+        <div class="form-row">
+          <div class="field">
+            <label for="vfCode">Kode voucher</label>
+            <input class="input" id="vfCode" placeholder="HEMAT25K" style="text-transform:uppercase">
+          </div>
+          <div class="field">
+            <label for="vfType">Jenis</label>
+            <select class="input" id="vfType">
+              <option value="percent">Diskon persen</option>
+              <option value="fixed">Potongan tetap</option>
+              <option value="freeship">Gratis ongkir</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="field">
+            <label for="vfValue">Nilai</label>
+            <input class="input" id="vfValue" inputmode="numeric" placeholder="10">
+            <span class="hint" id="vfValueHint">Persen untuk jenis persen, rupiah untuk potongan tetap.</span>
+          </div>
+          <div class="field">
+            <label for="vfMax">Batas potongan</label>
+            <input class="input" id="vfMax" inputmode="numeric" placeholder="50000">
+            <span class="hint">Isi 0 kalau tidak ada batasnya.</span>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="field">
+            <label for="vfMin">Belanja minimal</label>
+            <input class="input" id="vfMin" inputmode="numeric" placeholder="0">
+          </div>
+          <div class="field">
+            <label for="vfQuota">Kuota pemakaian</label>
+            <input class="input" id="vfQuota" inputmode="numeric" placeholder="100">
+          </div>
+        </div>
+        <div class="field">
+          <label for="vfExpires">Berlaku sampai <span class="muted">(opsional)</span></label>
+          <input class="input" type="date" id="vfExpires">
+        </div>
+        <div class="field">
+          <label for="vfDesc">Keterangan</label>
+          <textarea class="input" id="vfDesc" placeholder="Penjelasan singkat yang dilihat pembeli"></textarea>
+        </div>
+      </form>
+    </div>
+    <footer class="modal-foot">
+      <button class="btn" data-close>Batal</button>
+      <button class="btn btn-primary" id="vfSave">Simpan Voucher</button>
+    </footer>
+  </div>
+</div>
+
+<div class="modal" id="confirmModal" role="dialog" aria-modal="true">
+  <div class="modal-card" style="max-width:400px">
+    <header class="modal-head">
+      <h3>Konfirmasi</h3>
+      <button class="icon-btn" data-close aria-label="Tutup">✕</button>
+    </header>
+    <div class="modal-body">
+      <p id="confirmText" style="font-size:14.5px"></p>
+    </div>
+    <footer class="modal-foot">
+      <button class="btn" data-close>Batal</button>
+      <button class="btn btn-danger" id="confirmOk">Ya, lanjutkan</button>
+    </footer>
+  </div>
+</div>
+
+<div class="toast-wrap" id="toastWrap" aria-live="polite"></div>
+
+<script src="assets/js/data.js"></script>
+<script src="assets/js/admin.js"></script>
+</body>
+</html>

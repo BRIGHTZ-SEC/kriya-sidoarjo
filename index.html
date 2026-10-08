@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Toko Kriya Sidoarjo — Batik, Tas, Aksesoris, dan Kriya Tangan Asli</title>
+<meta name="description" content="Toko kriya khas Sidoarjo: batik tulis, tas dan dompet, aksesoris buatan tangan, serta kriya kayu.">
+<meta name="keywords" content="batik Sidoarjo, dompet kulit, tas anyaman, aksesoris buatan tangan, kriya kayu, toko kriya">
+<meta name="author" content="Toko Kriya Sidoarjo">
+<meta name="theme-color" content="#C2643B">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Toko Kriya Sidoarjo">
+<meta property="og:locale" content="id_ID">
+<meta property="og:title" content="Toko Kriya Sidoarjo — Batik, Tas, Aksesoris, dan Kriya Tangan Asli">
+<meta property="og:description" content="Kerja tangan asli buatan tangan. Dikirim seluruh Indonesia.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Toko Kriya Sidoarjo — Batik, Tas, Aksesoris, dan Kriya Tangan Asli">
+<meta name="twitter:description" content="Kerja tangan asli buatan tangan.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script src="assets/js/theme.js"></script>
+<link rel="stylesheet" href="assets/css/style.css">
+<link rel="icon" href="assets/img/logo/logo.jpeg">
+</head>
+<body>
+
+<!-- ========================= HEADER ========================= -->
+<header class="site-header">
+  <div class="container header-inner">
+    <a href="#" class="brand" data-nav="home" aria-label="Toko Kriya Sidoarjo">
+      <img class="brand-logo" src="assets/img/logo/logo.jpeg" alt="Toko Kriya Sidoarjo">
+    </a>
+
+    <nav class="main-nav" id="mainNav">
+      <a href="#" class="nav-link is-active" data-nav="home">Beranda</a>
+      <a href="#katalog" class="nav-link" data-nav="katalog">Katalog</a>
+      <a href="#" class="nav-link" data-nav="orders">Pesanan Saya</a>
+      <a href="#" class="nav-link" data-nav="favorit">Favorit <b class="nav-pill" id="favCount" data-empty="true">0</b></a>
+      <a href="#" class="nav-link" data-nav="lacak">Lacak Paket</a>
+      <a href="#" class="nav-link" data-nav="about">Tentang</a>
+    </nav>
+
+    <div class="header-search">
+      <span class="s-icon">🔍</span>
+      <input type="search" id="headerSearch" placeholder="Cari produk…" aria-label="Cari produk">
+    </div>
+
+    <div class="header-actions">
+      <button class="icon-btn theme-toggle" data-theme-toggle aria-label="Aktifkan tema gelap" title="Aktifkan tema gelap">🌙</button>
+      <button class="icon-btn cart-btn" id="cartBtn" aria-label="Buka keranjang belanja">
+        🛒
+        <span class="cart-count" id="cartCount" data-empty="true"></span>
+      </button>
+      <div id="authSlot"></div>
+      <button class="icon-btn burger" id="burgerBtn" aria-label="Buka menu">☰</button>
+    </div>
+  </div>
+</header>
+
+<!-- ========================= HERO ========================= -->
+<section class="hero">
+  <div class="container hero-grid">
+    <div>
+      <h1>Kerja Tangan Asli yang <em>Bukan</em> Pabrikan.</h1>
+      <p class="hero-lead">
+        Batik tulis, dompet kulit jahitan tangan, aksesori yang dibuat dengan teliti,
+        sampai ukiran jati. Setiap barang dibuat oleh tangan orang yang menguasai pekerjaannya.
+      </p>
+      <div class="hero-cta">
+        <a href="#katalog" class="btn btn-primary btn-lg" data-nav="katalog">Belanja Sekarang</a>
+        <a href="#" class="btn btn-lg" data-nav="about">Kenapa Belanja di Sini</a>
+      </div>
+      <div class="hero-stats">
+        <div class="hero-stat">
+          <b id="statProducts">10</b>
+          <span>Produk contoh</span>
+        </div>
+        <div class="hero-stat">
+          <b>4</b>
+          <span>Kategori produk</span>
+        </div>
+        <div class="hero-stat">
+          <b>3</b>
+          <span>Langkah belanja</span>
+        </div>
+        <div class="hero-stat">
+          <b>Demo</b>
+          <span>Data di browser</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-art" id="heroRecommendations" aria-label="Rekomendasi produk">
+      <div class="hero-blob"></div>
+    </div>
+  </div>
+</section>
+
+<section class="promo-announcement hidden" id="promoAnnouncement" aria-label="Promo toko">
+  <div class="container promo-announcement-inner">
+    <div class="promo-announcement-heading">
+      <span class="promo-announcement-label">Penawaran spesial</span>
+      <strong>Promo hari ini</strong>
+    </div>
+    <div class="promo-announcement-content" id="promoAnnouncementContent" aria-live="polite"></div>
+    <a class="promo-announcement-link" href="#promo">Jelajahi promo <span aria-hidden="true">→</span></a>
+  </div>
+</section>
+
+<!-- ========================= KATEGORI ========================= -->
+<section class="section" id="kategori">
+  <div class="container">
+    <div class="section-head">
+      <h2>Pilih Kategori</h2>
+      <p>Jelajahi produk contoh berdasarkan kategori.</p>
+    </div>
+    <div class="cat-row" id="catRow"></div>
+  </div>
+</section>
+
+<!-- ========================= INFO PROMO ========================= -->
+<section class="section" id="promo" style="padding-top:0">
+  <div class="container">
+    <div class="promo-grid">
+      <div class="promo-card pc-free">
+        <span class="pc-big-icon">🚚</span>
+        <div class="grow">
+          <b>Gratis ongkir otomatis</b>
+          <p>Belanja mulai <b id="freeShipMin">Rp500.000</b> langsung bebas ongkir untuk reguler dan ekspres.</p>
+          <div class="meter meter-free"><i id="freeShipBar" style="width:0%"></i></div>
+          <span class="tiny muted" id="freeShipHint">Tambah Rp500.000 lagi untuk gratis ongkir.</span>
+        </div>
+      </div>
+      <div class="promo-card pc-voucher">
+        <span class="pc-big-icon">🎟️</span>
+        <div class="grow">
+          <b>Punya kode promo?</b>
+          <p>Kode bisa redeemed di keranjang sebelum checkout.</p>
+          <div class="voucher-list" id="voucherStrip"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========================= PRODUK UNGGULAN ========================= -->
+<section class="section featured-section" id="unggulanSection" style="padding-top:0">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <span class="featured-eyebrow">Pilihan Toko Kriya</span>
+        <h2>Produk Unggulan</h2>
+        <p>Karya pilihan dengan detail dan karakter khas buatan perajin.</p>
+      </div>
+      <span class="featured-mark" aria-hidden="true">Pilihan Perajin</span>
+    </div>
+    <div class="product-grid product-grid-featured" id="featuredGrid"></div>
+  </div>
+</section>
+
+<!-- ========================= KATALOG ========================= -->
+<section class="section" id="katalog" style="padding-top:8px">
+  <div class="container">
+    <div class="section-head">
+      <h2>Katalog Produk</h2>
+      <p id="catalogSubtitle" aria-live="polite">Menampilkan seluruh produk.</p>
+    </div>
+
+    <div class="toolbar">
+      <div class="search-wrap">
+        <span class="s-icon">🔍</span>
+        <input type="search" id="catalogSearch" placeholder="Cari nama produk atau kategori…" aria-label="Cari di katalog">
+      </div>
+      <select class="input" id="sortSelect" aria-label="Urutkan produk">
+        <option value="terlaris">Paling laris</option>
+        <option value="terbaru">Baru ditambahkan</option>
+        <option value="harga-asc">Harga terendah</option>
+        <option value="harga-desc">Harga tertinggi</option>
+        <option value="diskon">Diskon terbesar</option>
+        <option value="rating">Rating tertinggi</option>
+        <option value="nama">Nama A-Z</option>
+      </select>
+      <select class="input" id="stockFilter" aria-label="Saring stok">
+        <option value="semua">Semua stok</option>
+        <option value="tersedia">Stok tersedia</option>
+        <option value="menipis">Stok menipis</option>
+        <option value="habis">Stok habis</option>
+      </select>
+      <button class="btn filter-toggle" id="favFilter" aria-pressed="false">♡ Tersimpan</button>
+    </div>
+
+    <div class="catalog-quick-filters" role="group" aria-label="Filter cepat katalog">
+      <label class="catalog-check"><input type="checkbox" id="discountFilter"><span>Promo saja</span></label>
+      <span class="catalog-filter-note">Harga dan urutan memperhitungkan harga setelah diskon.</span>
+    </div>
+
+    <div class="filter-panel" id="filterPanel">
+      <div class="fp-row">
+        <span class="fp-label">Rentang harga</span>
+        <div class="range-wrap">
+          <input class="input" type="number" id="priceMin" min="0" step="10000" placeholder="Harga minimum" aria-label="Harga minimum">
+          <span class="range-sep">sampai</span>
+          <input class="input" type="number" id="priceMax" min="0" step="10000" placeholder="Harga maksimum" aria-label="Harga maksimum">
+        </div>
+        <span class="fp-hint">Gunakan angka saja, contoh 100000</span>
+      </div>
+      <div class="fp-row">
+        <span class="fp-label">Label produk</span>
+        <div class="tag-row" id="tagRow"></div>
+      </div>
+      <div class="fp-row fp-actions">
+        <span class="fp-hint" id="filterSummary">Tidak ada filter tambahan.</span>
+        <button class="btn btn-sm btn-ghost" id="resetFilterBtn">Bersihkan filter</button>
+      </div>
+    </div>
+
+    <div class="product-grid" id="productGrid"></div>
+  </div>
+</section>
+
+<!-- ========================= LACAK PAKET ========================= -->
+<section class="section" id="lacakSection">
+  <div class="container">
+    <div class="section-head">
+      <h2>Lacak Paket</h2>
+      <p>Masukkan nomor pesanan atau nomor resi untuk melihat posisi paket.</p>
+    </div>
+
+    <div class="track-box">
+      <form class="track-form" id="trackForm" novalidate>
+        <div class="search-wrap">
+          <span class="s-icon">🔍</span>
+          <input class="input" type="search" id="trackInput" placeholder="ORD-2026-0011 atau TKS251009338417" aria-label="Nomor pesanan atau resi">
+        </div>
+        <button class="btn btn-primary btn-lg" type="submit">Lacak</button>
+      </form>
+      <div class="alert alert-error hidden" id="trackError" style="margin-top:12px"></div>
+      <div id="trackResult" style="margin-top:16px"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ========================= PENGANTAR ========================= -->
+<section class="section" id="about">
+  <div class="container">
+    <div class="section-head">
+      <h2>Kenapa Belanja di Toko Kriya?</h2>
+      <p>Contoh keunggulan toko yang dapat disesuaikan dengan kebutuhan proyek.</p>
+    </div>
+    <div class="cat-row">
+      <div class="cat-chip" style="cursor:default">
+        <span class="cc-icon" style="background:#f7e8e0">🧵</span>
+        <span>
+          <span class="cc-name">100% handmade</span>
+          <span class="cc-count">Bukan produksi massal</span>
+        </span>
+      </div>
+      <div class="cat-chip" style="cursor:default">
+        <span class="cc-icon" style="background:#eaf0e4">🌿</span>
+        <span>
+          <span class="cc-name">Bahan lokal</span>
+          <span class="cc-count">Kain dan kayu dalam negeri</span>
+        </span>
+      </div>
+      <div class="cat-chip" style="cursor:default">
+        <span class="cc-icon" style="background:#fff6dc">🚚</span>
+        <span>
+          <span class="cc-name">Kirim seluruh Indonesia</span>
+          <span class="cc-count">Reguler, ekspres, same day</span>
+        </span>
+      </div>
+      <div class="cat-chip" style="cursor:default">
+        <span class="cc-icon" style="background:#e3eeFB">↩️</span>
+        <span>
+          <span class="cc-name">Tukar 7 hari</span>
+          <span class="cc-count">Kalau barang tidak sesuai</span>
+        </span>
+      </div>
+      <a class="cat-chip" href="#" data-wa="Halo, saya mau tanya ukuran dan stok barang.">
+        <span class="cc-icon" style="background:#fbe7e5">💬</span>
+        <span>
+          <span class="cc-name">Chat langsung</span>
+          <span class="cc-count">Tanya ukuran dulu</span>
+        </span>
+      </a>
+      <div class="cat-chip" style="cursor:default">
+        <span class="cc-icon" style="background:#f3ece2">🏵️</span>
+        <span>
+          <span class="cc-name">Kemasan aman</span>
+          <span class="cc-count">Bubble wrap untuk barang rapuh</span>
+        </span>
+      </div>
+    </div>
+
+    <div class="demo-guide">
+      <div>
+        <span class="dg-step">01</span>
+        <div><b>Pilih produk</b><span>Cari produk atau gunakan filter kategori dan harga.</span></div>
+      </div>
+      <div>
+        <span class="dg-step">02</span>
+        <div><b>Atur keranjang</b><span>Ubah jumlah, coba voucher, lalu lanjutkan ke checkout.</span></div>
+      </div>
+      <div>
+        <span class="dg-step">03</span>
+        <div><b>Lihat pesanan</b><span>Gunakan akun demo untuk membuat pesanan simulasi dan melacaknya.</span></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ========================= FOOTER ========================= -->
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <h4>Toko Kriya Sidoarjo</h4>
+        <p>Batik, tas dan dompet, aksesori buatan tangan, dan kriya kayu.</p>
+      </div>
+      <div>
+        <h4>Belanja</h4>
+        <div class="footer-links">
+          <a href="#katalog" data-nav="katalog">Semua Produk</a>
+          <a href="#" data-nav="orders">Pesanan Saya</a>
+          <a href="#" data-nav="favorit">Favorit Saya</a>
+          <a href="#kategori">Kategori</a>
+          <a href="#" data-nav="about">Tentang Toko</a>
+        </div>
+      </div>
+      <div>
+        <h4>Pengiriman</h4>
+        <div class="footer-links">
+          <a href="#" data-nav="lacak">Lacak Paket</a>
+          <a href="#lacakSection" data-nav="lacak">Reguler (3-5 hari)</a>
+          <a href="#lacakSection" data-nav="lacak">Ekspres (1-2 hari)</a>
+          <a href="#lacakSection" data-nav="lacak">Same Day (Sidoarjo)</a>
+        </div>
+      </div>
+      <div>
+        <h4>Bantuan</h4>
+        <div class="footer-links">
+          <a href="#" data-wa="Saya mau tanya stok dan ukuran barang.">Chat WhatsApp</a>
+          <a href="#" data-nav="lacak">Lacak Resi</a>
+          <a href="#" data-wa="Saya mau tukar barang (tukar 7 hari).">Ajukan retur</a>
+        </div>
+      </div>
+      <div>
+        <h4>Kontak</h4>
+        <div class="footer-contact">
+          <span>📍 Jl. Raya Sidoarjo No. 88, Sidoarjo, Jawa Timur 61234</span>
+          <a href="tel:+6285745120164">📞 0857-4512-0164</a>
+          <a href="mailto:bayuprogemer123@gmail.com">✉️ bayuprogemer123@gmail.com</a>
+          <span>🕗 Senin-Sabtu, 08.00-17.00 WIB</span>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Toko Kriya Sidoarjo. Prototype tampilan, bukan toko sungguhan.</span>
+      <span>Dibuat oleh M Bayu Pradana</span>
+    </div>
+  </div>
+</footer>
+
+<!-- ========================= OVERLAY ========================= -->
+<div class="overlay" id="overlay"></div>
+
+<!-- ========================= CART DRAWER ========================= -->
+<aside class="drawer" id="cartDrawer" aria-label="Keranjang belanja">
+  <header class="drawer-head">
+    <h3>Keranjang Belanja</h3>
+    <button class="icon-btn" id="closeCart" aria-label="Tutup keranjang">✕</button>
+  </header>
+  <div class="drawer-body" id="cartBody"></div>
+  <footer class="drawer-foot" id="cartFoot"></footer>
+</aside>
+
+<!-- ========================= MODAL: PRODUCT ========================= -->
+<div class="modal modal-lg" id="productModal" role="dialog" aria-modal="true" aria-labelledby="pmTitle">
+  <div class="modal-card">
+    <button class="icon-btn" data-close style="position:absolute;top:12px;right:12px;z-index:2;background:var(--paper);box-shadow:var(--shadow-sm)" aria-label="Tutup">✕</button>
+    <div class="modal-body" id="productModalBody" style="padding:0"></div>
+  </div>
+</div>
+
+<div class="photo-lightbox" id="photoLightbox" role="dialog" aria-modal="true" aria-label="Foto produk diperbesar" aria-hidden="true">
+  <button class="photo-lightbox-close" id="photoLightboxClose" type="button" data-lightbox-close aria-label="Tutup foto">×</button>
+  <button class="photo-lightbox-nav photo-lightbox-prev" id="photoLightboxPrev" type="button" data-lightbox-step="-1" aria-label="Foto sebelumnya">‹</button>
+  <img class="photo-lightbox-image" id="photoLightboxImage" alt="">
+  <button class="photo-lightbox-nav photo-lightbox-next" id="photoLightboxNext" type="button" data-lightbox-step="1" aria-label="Foto berikutnya">›</button>
+  <span class="photo-lightbox-count" id="photoLightboxCount" aria-live="polite"></span>
+</div>
+
+<!-- ========================= MODAL: AUTH ========================= -->
+<div class="modal" id="authModal" role="dialog" aria-modal="true" aria-labelledby="authTitle">
+  <div class="modal-card">
+    <header class="modal-head">
+      <h3 id="authTitle">Masuk ke Toko Kriya</h3>
+      <button class="icon-btn" data-close aria-label="Tutup">✕</button>
+    </header>
+    <div class="modal-body">
+      <div class="tabs" style="margin-bottom:16px">
+        <button class="tab is-active" data-authtab="login" id="tabLogin">Masuk</button>
+        <button class="tab" data-authtab="register" id="tabRegister">Daftar</button>
+      </div>
+      <div class="alert alert-warn hidden" id="authError" style="margin-bottom:14px"></div>
+      <form class="form-grid" id="authForm" novalidate></form>
+    </div>
+  </div>
+</div>
+
+<!-- ========================= MODAL: ACCOUNT ========================= -->
+<div class="modal" id="accountModal" role="dialog" aria-modal="true" aria-labelledby="accTitle">
+  <div class="modal-card">
+    <header class="modal-head">
+      <h3 id="accTitle">Akun Saya</h3>
+      <button class="icon-btn" data-close aria-label="Tutup">✕</button>
+    </header>
+    <div class="modal-body" id="accountBody"></div>
+    <footer class="modal-foot">
+      <button class="btn btn-danger" id="logoutBtn">Keluar</button>
+      <button class="btn btn-primary" data-close>Selesai</button>
+    </footer>
+  </div>
+</div>
+
+<!-- ========================= MODAL: CHECKOUT ========================= -->
+<div class="modal" id="checkoutModal" role="dialog" aria-modal="true" aria-labelledby="coTitle">
+  <div class="modal-card">
+    <header class="modal-head">
+      <h3 id="coTitle">Checkout</h3>
+      <button class="icon-btn" data-close aria-label="Tutup">✕</button>
+    </header>
+    <div class="modal-body" id="checkoutBody"></div>
+    <footer class="modal-foot" id="checkoutFoot"></footer>
+  </div>
+</div>
+
+<!-- ========================= MODAL: ORDER DETAIL ========================= -->
+<div class="modal" id="orderModal" role="dialog" aria-modal="true" aria-labelledby="odTitle">
+  <div class="modal-card">
+    <header class="modal-head">
+      <h3 id="odTitle">Detail Pesanan</h3>
+      <button class="icon-btn" data-close aria-label="Tutup">✕</button>
+    </header>
+    <div class="modal-body" id="orderBody"></div>
+    <footer class="modal-foot">
+      <button class="btn" id="printOrderBtn">Cetak</button>
+      <button class="btn btn-primary" data-close>Tutup</button>
+    </footer>
+  </div>
+</div>
+
+<!-- ========================= MODAL: MOBILE NAV ========================= -->
+<div class="modal" id="navModal" role="dialog" aria-modal="true">
+  <div class="modal-card" style="max-width:340px">
+    <header class="modal-head">
+      <h3>Menu</h3>
+      <button class="icon-btn" data-close aria-label="Tutup">✕</button>
+    </header>
+    <div class="modal-body" style="display:grid;gap:6px">
+      <a href="#katalog" class="nav-link" data-nav="katalog" style="height:44px">Katalog</a>
+      <a href="#" class="nav-link" data-nav="orders" style="height:44px">Pesanan Saya</a>
+      <a href="#" class="nav-link" data-nav="lacak" style="height:44px">Lacak Paket</a>
+      <a href="#kategori" class="nav-link" style="height:44px">Kategori</a>
+      <a href="#" class="nav-link" data-nav="favorit" style="height:44px">Favorit Saya</a>
+      <a href="#" class="nav-link" data-nav="about" style="height:44px">Tentang</a>
+      <a href="admin.html" class="nav-link" style="height:44px">Panel Admin</a>
+    </div>
+  </div>
+</div>
+
+<div class="toast-wrap" id="toastWrap" aria-live="polite"></div>
+
+<!-- ========================= MODAL: KONFIRMASI ========================= -->
+<div class="modal" id="confirmModal" role="dialog" aria-modal="true" aria-labelledby="cfTitle">
+  <div class="modal-card" style="max-width:420px">
+    <header class="modal-head">
+      <h3 id="cfTitle">Konfirmasi</h3>
+      <button class="icon-btn" data-close aria-label="Tutup">✕</button>
+    </header>
+    <div class="modal-body">
+      <p id="confirmText" style="font-size:14.5px"></p>
+      <div class="field hidden" id="confirmReasonWrap" style="margin-top:12px">
+        <label for="confirmReason">Alasan pembatalan</label>
+        <textarea class="input" id="confirmReason" placeholder="Contoh: salah pilih ukuran"></textarea>
+      </div>
+    </div>
+    <footer class="modal-foot">
+      <button class="btn" data-close>Batal</button>
+      <button class="btn btn-danger" id="confirmOk">Ya, lanjutkan</button>
+    </footer>
+  </div>
+</div>
+
+<script src="assets/js/data.js"></script>
+<script src="assets/js/app.js"></script>
+</body>
+</html>
