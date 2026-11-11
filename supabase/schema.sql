@@ -221,6 +221,11 @@ security definer
 set search_path = public
 as $$
 begin
+  -- Service role (SQL Editor / backend) boleh mengubah role tanpa batasan.
+  -- User biasa yang sedang login tidak boleh mengangkat dirinya sendiri.
+  if auth.uid() is null then
+    return new;
+  end if;
   if new.role is distinct from old.role and not public.is_admin() then
     raise exception 'Role tidak boleh diubah sendiri.';
   end if;
