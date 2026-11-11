@@ -185,6 +185,11 @@ export function initLayout({ active = '' } = {}) {
     const user = getUser();
     const btn = qs('[data-acct-btn]', header);
     const nav = qs('[data-acct-nav]', bottomNav);
+    const adminLink = qs('[data-admin-link]', header);
+    const footerAdmin = qs('a[href="admin.html"]', footer);
+    const showAdmin = !!user && isAdmin();
+    if (adminLink) adminLink.hidden = !showAdmin;
+    if (footerAdmin) footerAdmin.parentElement.hidden = !showAdmin;
     if (user) {
       const name = user.profile?.full_name || user.email || '';
       if (btn) {
