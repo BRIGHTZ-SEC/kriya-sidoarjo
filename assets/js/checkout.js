@@ -12,7 +12,7 @@ import {
 } from './ui.js';
 import { getSettings, placeOrder, applyVoucher, UNCONFIGURED } from './api.js';
 import { cartSummary, clearCart, getStoredVoucher, clearVoucher } from './cart.js';
-import { getUser, initAuth } from './auth.js';
+import { getUser, initAuth, onAuthChange } from './auth.js';
 
 initLayout({ active: 'katalog' });
 
@@ -54,8 +54,15 @@ function calcFee() {
 }
 
 async function start() {
-  /* Harus login dulu */
-  const user = getUser();
+  /* Tunggu sesi auth selesai dimuat (maks ~2 detik) supaya tidak salah redirect */
+  let user = getUser();
+  if (!user) {
+    await new Promise((resolve) => {
+      const off = onAuthChange((u) => { if (u) { user = u; off(); resolve(); } });
+      setTimeout(() => { off(); resolve(); }, 2000);
+    });
+    user = getUser() || user;
+  }
   if (!user) {
     location.href = 'akun.html?next=' + encodeURIComponent('checkout.html');
     return;
