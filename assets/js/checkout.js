@@ -10,8 +10,8 @@ import { icon } from './icons.js';
 import {
   qs, qsa, esc, num, rupiah, toast, emptyState, errMsg, confirmAction, productImage,
 } from './ui.js';
-import { getSettings, placeOrder, applyVoucher, UNCONFIGURED } from './api.js';
-import { cartSummary, clearCart, getStoredVoucher, clearVoucher } from './cart.js';
+import { getSettings, placeOrder, UNCONFIGURED } from './api.js';
+import { cartSummary, clearCart, getStoredVoucher, clearVoucher, applyVoucher } from './cart.js';
 import { getUser, initAuth, onAuthChange } from './auth.js';
 
 initLayout({ active: 'katalog' });
