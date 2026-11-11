@@ -405,11 +405,18 @@ async function submitOrder(summary, settings) {
   } catch (e) {
     placing = false;
     btn.disabled = false;
-    btn.innerHTML = `${icon('refresh')} Buat Pesanan`;
+    btn.innerHTML = `${icon('check')} Buat Pesanan`;
     const msg = errMsg(e);
-    const lowStock = /stok/i.test(msg);
-    toast(msg, 'error', 5000);
-    if (lowStock) window.scrollTo({ top: 0, behavior: 'smooth' });
+    console.error('placeOrder failed:', e);
+    /* Tampilkan error inline supaya jelas, tidak cuma toast kecil */
+    const alert = document.createElement('div');
+    alert.className = 'alert alert-error mt-2';
+    alert.innerHTML = `${icon('alert-circle')}<div class="grow"><b>Pesanan gagal dibuat.</b><br>${esc(msg)}</div>`;
+    const existing = root.querySelector('.alert-error');
+    if (existing) existing.remove();
+    root.prepend(alert);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    toast(msg, 'error', 6000);
   }
 }
 
