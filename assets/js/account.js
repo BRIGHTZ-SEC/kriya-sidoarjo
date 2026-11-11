@@ -53,7 +53,7 @@ function renderAuth(mode = 'login') {
         ${!isLogin ? `
         <div class="field">
           <label for="a-name">Nama lengkap</label>
-          <input class="input" id="a-name" required autocomplete="name" placeholder="cth. Bayu Pamungkas">
+          <input class="input" id="a-name" required autocomplete="name" placeholder="Nama lengkap">
         </div>` : ''}
         <div class="field">
           <label for="a-email">Email</label>
