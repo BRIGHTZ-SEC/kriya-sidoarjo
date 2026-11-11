@@ -1041,10 +1041,7 @@ function renderAuthForm() {
         <input class="input" type="password" id="liPass" placeholder="••••••" autocomplete="current-password">
       </div>
       <button class="btn btn-primary btn-lg btn-block" type="submit">Masuk</button>
-      <div class="alert alert-info" style="margin-top:4px">
-        <span>🔑</span>
-        <span>Akun demo: <b>bayu@mail.com</b> / <b>bayu123</b>. Admin: <b>admin@tokokriya.id</b> / <b>admin123</b>.</span>
-      </div>`;
+      `;
   } else {
     form.innerHTML = `
       <div class="field">

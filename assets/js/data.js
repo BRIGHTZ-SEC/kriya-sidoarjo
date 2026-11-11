@@ -4,7 +4,7 @@
    ========================================================================= */
 
 const DB_KEY = 'tks_db_v1';
-const SCHEMA_VERSION = 14;
+const SCHEMA_VERSION = 15;
 
 /* Produk makanan dihapus dari katalog (fokus toko jadi kerajinan saja) */
 const RETIRED_PRODUCT_IDS = ['p4', 'p5', 'p6', 'p14', 'p15', 'p16'];
@@ -252,23 +252,7 @@ function seededRandom(seed) {
 
 /* ---------------------------- Data Awal ---------------------------- */
 
-const SEED_USERS = [
-  {
-    id: 'u1', name: 'Bayu Pamungkas', email: 'bayu@mail.com', password: 'bayu123',
-    role: 'customer', phone: '081234567890',
-    addresses: [
-      {
-        id: 'a1', label: 'Rumah', name: 'Bayu Pamungkas', phone: '081234567890',
-        address: 'Jl. Raya Sidoarjo No. 12 RT 02 RW 05', city: 'Sidoarjo', postal: '61234',
-        isDefault: true,
-      },
-    ],
-  },
-  {
-    id: 'u2', name: 'Admin Toko', email: 'admin@tokokriya.id', password: 'admin123',
-    role: 'admin', phone: '081298765432', addresses: [],
-  },
-];
+const SEED_USERS = [];
 
 const SEED_REVIEW_NAMES = [
   'Dewi Anggraini', 'Rizky Pratama', 'Sinta Maharani', 'Bagus Wicaksono',
@@ -340,56 +324,7 @@ function recalcProductRating(db, productId) {
     : 0;
 }
 
-const SEED_ORDERS = [
-  {
-    id: 'ORD-2026-0011',
-    userId: 'u1',
-    createdAt: daysAgo(6),
-    status: 'selesai',
-    customer: {
-      name: 'Bayu Pamungkas', phone: '081234567890', email: 'bayu@mail.com',
-      address: 'Jl. Raya Sidoarjo No. 12 RT 02 RW 05', city: 'Sidoarjo', postal: '61234',
-      note: '',
-    },
-    payment: 'transfer',
-    shipping: 'reguler',
-    items: [
-      { productId: 'p8', name: 'Dompet Kulit Sapi Cokelat', price: 145000, qty: 2, icon: '👜', weight: 0.2 },
-    ],
-    subtotal: 290000, discount: 0, shippingCost: 15000, paymentFee: 0, total: 305000,
-    voucher: null, resi: 'TKS251009338417', paidAt: daysAgo(6), cancelReason: null,
-    statusHistory: [
-      { status: 'menunggu', at: daysAgo(6), note: 'Pesanan dibuat, menunggu pembayaran' },
-      { status: 'diproses', at: daysAgo(6), note: 'Pembayaran diterima via transfer bank' },
-      { status: 'dikirim', at: daysAgo(5), note: 'Paket diserahkan ke kurir, resi TKS251009338417' },
-      { status: 'selesai', at: daysAgo(3), note: 'Paket diterima pembeli' },
-    ],
-  },
-  {
-    id: 'ORD-2026-0012',
-    userId: 'u1',
-    createdAt: daysAgo(2),
-    status: 'diproses',
-    customer: {
-      name: 'Bayu Pamungkas', phone: '081234567890', email: 'bayu@mail.com',
-      address: 'Jl. Raya Sidoarjo No. 12 RT 02 RW 05', city: 'Sidoarjo', postal: '61234',
-      note: 'Titip ke satpam bila rumah kosong.',
-    },
-    payment: 'qris',
-    shipping: 'reguler',
-    items: [
-      { productId: 'p1', name: 'Batik Tulis Sidoarjo', price: 485000, qty: 1, icon: '👘', weight: 0.4 },
-      { productId: 'p11', name: 'Sandal Kulit Pria', price: 265000, qty: 1, icon: '👟', weight: 0.8 },
-    ],
-    subtotal: 750000, discount: 50000, shippingCost: 0, paymentFee: 0, total: 700000,
-    voucher: { code: 'KRIYA10', type: 'percent', value: 10, label: 'Diskon 10%' },
-    resi: null, paidAt: daysAgo(2), cancelReason: null,
-    statusHistory: [
-      { status: 'menunggu', at: daysAgo(2), note: 'Pesanan dibuat, menunggu pembayaran QRIS' },
-      { status: 'diproses', at: daysAgo(2), note: 'Pembayaran QRIS diterima' },
-    ],
-  },
-];
+const SEED_ORDERS = [];
 
 const SEED_VOUCHERS = [
   {
@@ -446,6 +381,11 @@ function migrate(db) {
   if (!Array.isArray(db.cart)) db.cart = [];
   if (!Array.isArray(db.reviews)) db.reviews = [];
   if (!Array.isArray(db.vouchers)) db.vouchers = SEED_VOUCHERS.map((v) => ({ ...v }));
+
+  if (fromVersion < 15) {
+    db.users = db.users.filter((user) => !/^bayu@|^admin@tokokriya\.id$/i.test(user.email || ''));
+    db.orders = db.orders.filter((order) => !/^ORD-2026-001[12]$/.test(order.id || ''));
+  }
 
   db.products.forEach((p) => {
     if (!Array.isArray(p.images)) p.images = [];
@@ -562,12 +502,6 @@ function migrate(db) {
       product.name = 'Batik Tulis Sidoarjo';
       product.slug = 'batik-tulis-sidoarjo';
     }
-    const demoOrder = db.orders.find((o) => o.id === 'ORD-2026-0012');
-    if (Array.isArray(demoOrder?.items)) demoOrder.items.forEach((item) => {
-      if (item.productId === 'p1' && item.name === 'Batik Tulis Kriya CPU') {
-        item.name = 'Batik Tulis Sidoarjo';
-      }
-    });
   }
 
   /* Produk unggulan ditandai manual lewat admin, jadi data lama diisi dari daftar seed */
@@ -652,7 +586,6 @@ const Store = {
       this.db = seedDB();
     }
     if (!this.db.products.length) this.db.products = SEED_PRODUCTS;
-    if (!this.db.users.length) this.db.users = SEED_USERS;
     return this.db;
   },
 

@@ -1,13 +1,7 @@
 -- ============================================================================
--- Toko Kriya Sidoarjo — Data Demo (seed)
+-- Toko Kriya Sidoarjo — Data Katalog (seed)
 -- ----------------------------------------------------------------------------
--- CARA PAKAI (URUTANNYA PENTING):
---   1. Jalankan dulu file schema.sql di SQL Editor
---   2. Buat dua akun demo di menu Authentication -> Users -> "Add user":
---        - admin@tokokriya.id   / admin123   (Auto Confirm: ON)
---        - bayu@mail.com        / bayu123    (Auto Confirm: ON)
---   3. Baru kemudian jalankan file ini di SQL Editor
---      (pesanan demo akan otomatis terhubung ke akun bayu berdasarkan email)
+-- Jalankan schema.sql terlebih dahulu, lalu file ini di SQL Editor.
 -- ============================================================================
 
 -- ============================================================================
@@ -230,57 +224,8 @@ insert into public.store_settings (
 on conflict (id) do nothing;
 
 -- ============================================================================
--- 6. PESANAN DEMO (milik akun bayu@mail.com)
+-- 6. PESANAN DEMO sengaja tidak di-seed agar tidak memerlukan akun contoh
 -- ============================================================================
-insert into public.orders (
-  id, user_id, customer, payment, shipping,
-  subtotal, discount, shipping_cost, payment_fee, total,
-  voucher_code, resi, paid_at, cancel_reason, status, created_at
-) values
-(
-  'ORD-2026-0011',
-  (select id from auth.users where email = 'bayu@mail.com' limit 1),
-  jsonb_build_object(
-    'name', 'Bayu Pamungkas', 'phone', '081234567890', 'email', 'bayu@mail.com',
-    'address', 'Jl. Raya Sidoarjo No. 12 RT 02 RW 05', 'city', 'Sidoarjo',
-    'postal', '61234', 'note', ''
-  ),
-  'transfer', 'reguler',
-  290000, 0, 15000, 0, 305000,
-  null, 'TKS251009338417', now() - interval '6 days', null, 'selesai', now() - interval '6 days'
-),
-(
-  'ORD-2026-0012',
-  (select id from auth.users where email = 'bayu@mail.com' limit 1),
-  jsonb_build_object(
-    'name', 'Bayu Pamungkas', 'phone', '081234567890', 'email', 'bayu@mail.com',
-    'address', 'Jl. Raya Sidoarjo No. 12 RT 02 RW 05', 'city', 'Sidoarjo',
-    'postal', '61234', 'note', 'Titip ke satpam bila rumah kosong.'
-  ),
-  'qris', 'reguler',
-  671750, 50000, 0, 0, 621750,
-  'KRIYA10', null, now() - interval '2 days', null, 'diproses', now() - interval '2 days'
-)
-on conflict (id) do nothing;
-
-insert into public.order_items (order_id, product_id, variant_id, name, price, qty, image, weight) values
-  ('ORD-2026-0011', 'b0000000-0000-4000-8000-000000000005', null, 'Dompet Kulit Sapi Cokelat', 145000, 2,
-   'assets/img/products/dompet-kulit-sapi-cokelat.webp', 0.2),
-  ('ORD-2026-0012', 'b0000000-0000-4000-8000-000000000001', null, 'Batik Tulis Sidoarjo', 485000, 1,
-   'assets/img/products/batik-tulis-kriya-cpu.webp', 0.4),
-  ('ORD-2026-0012', 'b0000000-0000-4000-8000-000000000008', null, 'Sandal Kulit Pria', 186750, 1,
-   '', 0.8)
-on conflict do nothing;
-
-insert into public.order_status_history (order_id, status, note, created_at) values
-  ('ORD-2026-0011', 'menunggu', 'Pesanan dibuat, menunggu pembayaran', now() - interval '6 days'),
-  ('ORD-2026-0011', 'diproses', 'Pembayaran diterima via Transfer Bank', now() - interval '6 days'),
-  ('ORD-2026-0011', 'dikirim', 'Paket diserahkan ke kurir, resi TKS251009338417', now() - interval '5 days'),
-  ('ORD-2026-0011', 'selesai', 'Paket diterima pembeli', now() - interval '3 days'),
-  ('ORD-2026-0012', 'menunggu', 'Pesanan dibuat, menunggu pembayaran QRIS', now() - interval '2 days'),
-  ('ORD-2026-0012', 'diproses', 'Pembayaran QRIS diterima', now() - interval '2 days')
-on conflict do nothing;
-
 -- ============================================================================
 -- 7. ULASAN DEMO (acak tapi konsisten, ±64 ulasan)
 -- ============================================================================

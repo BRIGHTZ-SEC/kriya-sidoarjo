@@ -12,18 +12,17 @@ Backend memakai Supabase (PostgreSQL + Auth + Storage).
 - `assets/css/` — base, components, store, admin
 - `assets/img/` — logo & foto produk
 - `supabase/schema.sql` — skema DB + RPC + RLS + storage bucket
-- `supabase/seed.sql` — data contoh (kategori, produk, voucher, ulasan, order demo)
+- `supabase/seed.sql` — data katalog contoh (kategori, produk, voucher, ulasan)
 
 ## Setup Supabase (wajib agar toko berfungsi)
 
 1. Buat project baru di https://supabase.com (gratis). Catat **Project URL**
    dan **anon public key** dari menu Settings → API.
 2. Buka SQL Editor → New query, paste isi `supabase/schema.sql`, klik Run.
-3. Buat 2 user di Authentication → Users → Add user (Auto Confirm User: ON):
-   - `admin@tokokriya.id` / `admin123`
-   - `bayu@mail.com` / `bayu123`
-4. Jalankan `supabase/seed.sql` di SQL Editor (mengisi profil admin, kategori,
-   produk, voucher, ulasan, dan 2 pesanan demo untuk bayu).
+3. Buat user admin dan pembeli sendiri di Authentication → Users → Add user
+   (Auto Confirm User: ON), lalu atur role admin pada profil yang sesuai.
+4. Jalankan `supabase/seed.sql` di SQL Editor untuk mengisi kategori, produk,
+   voucher, dan ulasan.
 5. Isi `assets/js/config.js`:
    ```js
    export const CONFIG = {
@@ -32,11 +31,6 @@ Backend memakai Supabase (PostgreSQL + Auth + Storage).
    };
    ```
 6. Commit & push. Situs live di `https://brightz-sec.github.io/kriya-sidoarjo`.
-
-## Akun demo
-
-- Admin: `admin@tokokriya.id` / `admin123` (akses panel admin di `admin.html`)
-- Pembeli: `bayu@mail.com` / `bayu123` (punya 2 pesanan demo)
 
 ## Catatan
 

@@ -74,10 +74,6 @@ function renderAuth(mode = 'login') {
         <a href="#" data-mode="${isLogin ? 'register' : 'login'}">${isLogin ? 'Daftar dulu' : 'Masuk di sini'}</a>
       </p>
 
-      <div class="alert alert-info auth-demo">
-        ${icon('info')}
-        <div>Akun demo (kalau seed sudah dijalankan): <b>bayu@mail.com</b> / <b>bayu123</b>. Admin: <b>admin@tokokriya.id</b> / <b>admin123</b>.</div>
-      </div>
     </div>
   </div>`;
 
