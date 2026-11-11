@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Checkout — Toko Kriya Sidoarjo</title>
+  <meta name="description" content="Selesaikan pesanan kriya Sidoarjo: pilih metode pengiriman, pembayaran, dan pakai voucher diskon.">
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700;9..144,800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="assets/js/theme.js"></script>
+  <link rel="stylesheet" href="assets/css/base.css">
+  <link rel="stylesheet" href="assets/css/components.css">
+  <link rel="stylesheet" href="assets/css/store.css">
+</head>
+<body data-page="katalog">
+
+  <main class="container section-tight">
+    <div class="co-steps" aria-label="Langkah checkout">
+      <div class="co-step is-done"><span class="num">1</span> Pilih produk</div>
+      <div class="co-step-line"></div>
+      <div class="co-step is-active"><span class="num">2</span> Isi data &amp; bayar</div>
+      <div class="co-step-line"></div>
+      <div class="co-step"><span class="num">3</span> Terima barang</div>
+    </div>
+
+    <div class="page-narrow" id="co-root">
+      <div class="card card-pad">
+        <div class="skeleton" style="height:22px;width:45%"></div>
+        <div class="skeleton" style="height:16px;width:70%;margin-top:14px"></div>
+        <div class="skeleton" style="height:16px;width:55%;margin-top:10px"></div>
+      </div>
+    </div>
+  </main>
+
+  <script type="module" src="assets/js/checkout.js"></script>
+</body>
+</html>

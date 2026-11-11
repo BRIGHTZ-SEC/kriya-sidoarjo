@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Katalog Produk — Toko Kriya Sidoarjo</title>
+  <meta name="description" content="Jelajahi semua produk kriya asli Sidoarjo: batik tulis, tas & dompet kulit, aksesoris, dan ukiran kayu jati. Filter kategori, harga, dan rating.">
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700;9..144,800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="assets/js/theme.js"></script>
+  <link rel="stylesheet" href="assets/css/base.css">
+  <link rel="stylesheet" href="assets/css/components.css">
+  <link rel="stylesheet" href="assets/css/store.css">
+</head>
+<body data-page="katalog">
+
+  <main class="container section-tight">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="index.html">Beranda</a>
+      <svg class="icon"><use href="#i-chevron-right"/></svg>
+      <span class="crumb-current">Katalog</span>
+    </nav>
+
+    <div class="section-head" style="margin-bottom:20px">
+      <h1 id="catalog-title" style="font-size:clamp(26px,3.4vw,38px)">Katalog Kriya</h1>
+      <p class="muted">Semua hasil tangan perajin Sidoarjo, siap dikirim ke rumahmu.</p>
+    </div>
+
+    <div class="catalog-layout">
+      <!-- Filter sisi kiri (desktop) -->
+      <aside class="filter-panel" id="filter-panel" aria-label="Filter produk"></aside>
+
+      <!-- Hasil -->
+      <div>
+        <div class="catalog-toolbar">
+          <span class="result-count" id="result-count">Memuat…</span>
+          <div class="row">
+            <button class="btn btn-ghost btn-sm filter-open-btn" id="open-filters">
+              <svg class="icon"><use href="#i-filter"/></svg> Filter
+            </button>
+            <select class="input sort-select" id="sort-select" aria-label="Urutkan produk">
+              <option value="baru">Terbaru</option>
+              <option value="laris">Terlaris</option>
+              <option value="murah">Harga terendah</option>
+              <option value="mahal">Harga tertinggi</option>
+              <option value="rating">Rating tertinggi</option>
+            </select>
+          </div>
+        </div>
+        <div class="p-grid" id="catalog-grid"></div>
+        <div id="catalog-foot"></div>
+      </div>
+    </div>
+  </main>
+
+  <script type="module" src="assets/js/catalog.js"></script>
+</body>
+</html>

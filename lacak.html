@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Lacak Pesanan — Toko Kriya Sidoarjo</title>
+  <meta name="description" content="Lacak pesanan Toko Kriya Sidoarjo: masukkan nomor pesanan (ORD-…) atau nomor resi, lihat riwayat pengiriman tanpa perlu login.">
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700;9..144,800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="assets/js/theme.js"></script>
+  <link rel="stylesheet" href="assets/css/base.css">
+  <link rel="stylesheet" href="assets/css/components.css">
+  <link rel="stylesheet" href="assets/css/store.css">
+</head>
+<body data-page="lacak">
+
+  <main class="container">
+    <div class="track-hero">
+      <span class="eyebrow">Lacak paket</span>
+      <h1>Di mana kiriman kriyaku sekarang?</h1>
+      <p>Masukkan nomor pesanan atau nomor resi — tanpa perlu login, privasi alamatmu tetap aman.</p>
+      <form class="track-form" id="track-form">
+        <input class="input" id="track-input" placeholder="ORD-2026-… atau nomor resi" autocomplete="off"
+               style="text-transform:uppercase" aria-label="Nomor pesanan atau resi">
+        <button class="btn btn-primary btn-lg" type="submit">
+          <svg class="icon"><use href="#i-search"/></svg> Lacak
+        </button>
+      </form>
+    </div>
+    <div class="track-result" id="track-result"></div>
+  </main>
+
+  <script type="module" src="assets/js/track.js"></script>
+</body>
+</html>
