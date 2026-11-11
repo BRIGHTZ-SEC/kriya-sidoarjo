@@ -35,7 +35,7 @@ insert into public.products (
   'Kain batik tulis motif jlamprang, tulis tangan oleh perajin desa.',
   'Dibuat dengan teknik tulis tangan menggunakan canting. Motif jlamprang yang diwariskan turun-temurun dari perajin Sidoarjo. Berbahan katun prima yang tidak mudah luntur, sudah dilorod dan siap pakai.',
   'Katun prima', 'Sekitar 200 × 110 cm', 'Cuci tangan dengan air dingin dan sabun lembut.',
-  '{Handmade,Katun Prima,Siap Pakai}', '{assets/img/products/batik-tulis-kriya-cpu.jpg}',
+  '{Handmade,Katun Prima,Siap Pakai}', '{assets/img/products/batik-tulis-kriya-cpu.webp}',
   now() - interval '48 days'
 ),
 (
@@ -75,7 +75,7 @@ insert into public.products (
   'Kulit sapi full grain, makin awet makin bagus.',
   'Kulit sapi full grain yang menua cantik seiring pemakaian. Dijahit dengan teknik saddle stitch yang jauh lebih kuat dari jahitan mesin biasa.',
   'Kulit sapi full grain', 'Sekitar 11 × 9 cm', 'Bersihkan dengan kain kering dan gunakan pelembap kulit.',
-  '{Full Grain,Saddle Stitch}', '{assets/img/products/dompet-kulit-sapi-cokelat.jpg}',
+  '{Full Grain,Saddle Stitch}', '{assets/img/products/dompet-kulit-sapi-cokelat.webp}',
   now() - interval '40 days'
 ),
 (
@@ -135,7 +135,7 @@ insert into public.products (
   'Boneka kain buatan tangan dengan motif batik.',
   'Boneka kain bermotif batik yang dijahit tangan. Cocok menjadi hadiah atau hiasan dan dapat dibersihkan dengan lap lembut.',
   'Kain katun bermotif batik', 'Sekitar 18 cm', 'Bersihkan dengan lap lembut dan hindari pemutih.',
-  '{Handmade,Kain Batik,Hadiah}', '{assets/img/products/boneka-kain-handmade.jpg}',
+  '{Handmade,Kain Batik,Hadiah}', '{assets/img/products/boneka-kain-handmade.webp}',
   now() - interval '28 days'
 ),
 (
@@ -155,7 +155,7 @@ insert into public.products (
   'Kipas bambu ringan dengan anyaman rapi.',
   'Kipas tangan sederhana dari bambu dengan rangka yang ringan. Praktis dibawa dan cocok sebagai aksesori atau cendera mata.',
   'Bambu', 'Sekitar 40 × 23 cm saat dibuka', 'Simpan di tempat kering dan jangan ditekuk berlebihan.',
-  '{Handmade,Bambu,Cendera Mata}', '{assets/img/products/kipas-anyaman-bambu.jpg}',
+  '{Handmade,Bambu,Cendera Mata}', '{assets/img/products/kipas-anyaman-bambu.webp}',
   now() - interval '24 days'
 ),
 (
@@ -165,7 +165,7 @@ insert into public.products (
   'Meja kayu bernuansa natural untuk ruang keluarga.',
   'Meja kayu bergaya natural dengan serat kayu yang tampak jelas. Cocok sebagai meja ruang keluarga atau meja kopi.',
   'Kayu solid', 'Ukuran dan detail mengikuti produk pada foto', 'Lap dengan kain kering dan hindari paparan air berlebih.',
-  '{Kayu,Furnitur,Natural}', '{assets/img/products/meja-kayu-jati.jpg}',
+  '{Kayu,Furnitur,Natural}', '{assets/img/products/meja-kayu-jati.webp}',
   now() - interval '22 days'
 ),
 (
@@ -175,7 +175,7 @@ insert into public.products (
   'Tas anyaman natural dengan pegangan kokoh.',
   'Tas anyaman bernuansa natural dengan desain ringan untuk membawa barang pribadi. Setiap anyaman memiliki karakter tersendiri.',
   'Bahan anyaman alami', 'Ukuran mengikuti produk pada foto', 'Jaga tetap kering dan bersihkan dengan sikat lembut.',
-  '{Anyaman,Handmade,Natural}', '{assets/img/products/tas-anyaman-bambu.jpg}',
+  '{Anyaman,Handmade,Natural}', '{assets/img/products/tas-anyaman-bambu.webp}',
   now() - interval '20 days'
 ),
 (
@@ -185,7 +185,7 @@ insert into public.products (
   'Tas rotan ringan dengan bentuk praktis.',
   'Tas dari bahan rotan dengan bentuk sederhana dan tali panjang. Cocok digunakan untuk membawa barang pribadi saat bepergian.',
   'Rotan dan tali kain', 'Ukuran mengikuti produk pada foto', 'Simpan di tempat kering dan hindari beban berlebih.',
-  '{Rotan,Anyaman,Handmade}', '{assets/img/products/tas-rotan.jpg}',
+  '{Rotan,Anyaman,Handmade}', '{assets/img/products/tas-rotan.webp}',
   now() - interval '18 days'
 )
 on conflict (slug) do nothing;
@@ -265,9 +265,9 @@ on conflict (id) do nothing;
 
 insert into public.order_items (order_id, product_id, variant_id, name, price, qty, image, weight) values
   ('ORD-2026-0011', 'b0000000-0000-4000-8000-000000000005', null, 'Dompet Kulit Sapi Cokelat', 145000, 2,
-   'assets/img/products/dompet-kulit-sapi-cokelat.jpg', 0.2),
+   'assets/img/products/dompet-kulit-sapi-cokelat.webp', 0.2),
   ('ORD-2026-0012', 'b0000000-0000-4000-8000-000000000001', null, 'Batik Tulis Sidoarjo', 485000, 1,
-   'assets/img/products/batik-tulis-kriya-cpu.jpg', 0.4),
+   'assets/img/products/batik-tulis-kriya-cpu.webp', 0.4),
   ('ORD-2026-0012', 'b0000000-0000-4000-8000-000000000008', null, 'Sandal Kulit Pria', 186750, 1,
    '', 0.8)
 on conflict do nothing;
