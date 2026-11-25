@@ -390,8 +390,8 @@ async function submitOrder(summary, settings) {
     /* Halaman sukses */
     root.innerHTML = `
     <div class="card card-pad center" style="padding:56px 24px">
-      <div class="es-icon" style="margin:0 auto 14px;width:80px;height:80px;background:var(--ok-soft);border-color:var(--ok);color:var(--ok)">
-        ${icon('check-circle')}
+      <div class="es-icon" style="margin:0 auto 14px;width:88px;height:88px;background:var(--ok-soft);border-color:var(--ok);color:var(--ok)">
+        <svg class="icon" style="width:52px;height:52px;vertical-align:0" aria-hidden="true"><use href="#i-check-circle"/></svg>
       </div>
       <h1 style="font-size:30px">Pesanan berhasil dibuat!</h1>
       <p class="muted mt-1" style="max-width:420px;margin:10px auto 0">
