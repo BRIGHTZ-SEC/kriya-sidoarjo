@@ -8,3 +8,9 @@ Thumbs.db
 
 # Node (kalau pakai npx serve / tooling)
 node_modules/
+
+# Impeccable tooling (local only)
+.agent/
+.gemini/
+.opencode/
+
