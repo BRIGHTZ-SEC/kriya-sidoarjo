@@ -287,7 +287,7 @@ async function openReviewModal(orderId) {
     const m = showModal({
       title: `Tulis ulasan — ${orderId}`,
       body: `
-        <p class="muted small mb-2">Ulasan masuk dulu ke antrian moderasi admin sebelum tampil publik.</p>
+        <p class="muted small mb-2">Ulasan langsung tampil publik setelah dikirim.</p>
         ${items.map((it, i) => `
         <div class="card card-pad mb-2" data-review-item="${i}">
           <div class="row" style="align-items:flex-start">
@@ -352,7 +352,7 @@ async function openReviewModal(orderId) {
         }
       }
       if (sent) {
-        toast(`${sent} ulasan terkirim — menunggu moderasi admin. Terima kasih!`, 'ok', 4200);
+        toast(`${sent} ulasan terkirim & langsung tampil di produk. Terima kasih!`, 'ok', 4200);
         m.close();
       } else {
         toast('Isi bintang dan tulisan dulu minimal satu produk.', 'info');
