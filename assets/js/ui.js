@@ -387,10 +387,13 @@ export function productCard(p, { showFlag = true } = {}) {
 /* Pasang event klik tombol "+ Keranjang" pada grid kartu produk */
 export function bindProductCards(root, products, addToCartFn) {
   if (!root || !addToCartFn) return;
+  root._products = products || [];
+  if (root._bound) return;
+  root._bound = true;
   root.addEventListener('click', (e) => {
     const btn = e.target.closest('[data-add]');
     if (!btn) return;
-    const p = (products || []).find((x) => x.id === btn.dataset.add);
+    const p = (root._products || []).find((x) => x.id === btn.dataset.add);
     if (!p || Number(p.stock || 0) <= 0) return;
     addToCartFn({
       product_id: p.id,
