@@ -406,6 +406,5 @@ export function bindProductCards(root, products, addToCartFn) {
       weight: Number(p.weight || 0.2),
       max_stock: Number(p.stock || 0),
     }, { open: false });
-    toast(`${p.name} masuk keranjang`, 'ok');
   });
 }
