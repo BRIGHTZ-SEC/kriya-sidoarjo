@@ -1,12 +1,4 @@
--- ============================================================================
--- Toko Kriya Sidoarjo — Data Katalog (seed)
--- ----------------------------------------------------------------------------
--- Jalankan schema.sql terlebih dahulu, lalu file ini di SQL Editor.
--- ============================================================================
 
--- ============================================================================
--- 1. KATEGORI
--- ============================================================================
 insert into public.categories (id, slug, name, icon, color, sort) values
   ('a0000000-0000-4000-8000-000000000001', 'batik',    'Batik',        'batik', '#c05a30', 1),
   ('a0000000-0000-4000-8000-000000000002', 'tas',      'Tas & Dompet', 'bag',   '#8a5a44', 2),
@@ -39,7 +31,7 @@ insert into public.products (
   'Batik cap dengan pewarna alam, motif khas Sidoarjo.',
   'Batik cap dengan pewarnaan alami dari indigo dan akar mengkudu. Proses capping dilakukan manual memakai cap tembaga. Warnanya tahan lama dan ramah lingkungan.',
   'Katun dengan pewarna alam', 'Sekitar 200 × 110 cm', 'Cuci terpisah dengan sabun lembut.',
-  '{Pewarna Alami,Motif Klasik}', '{}',
+  '{Pewarna Alami,Motif Klasik}', '{assets/img/products/batik-SDM.webp}',
   now() - interval '46 days'
 ),
 (
@@ -49,7 +41,7 @@ insert into public.products (
   'Sogan cokelat premium, motif kawung klasik.',
   'Pewarna sogan dari kulit kayu menghasilkan warna cokelat keemasan yang khas. Motif kawung sebagai simbol keabadian. Bahannya kain katun yang nyaman di kulit.',
   'Katun dengan pewarna sogan', 'Sekitar 200 × 110 cm', 'Cuci terpisah dengan sabun lembut.',
-  '{Premium,Katun}', '{}',
+  '{Premium,Katun}', '{assets/img/products/batik-sogam.webp}',
   now() - interval '44 days'
 ),
 (
@@ -79,7 +71,7 @@ insert into public.products (
   'Ukuran 40x30x20 cm, pas untuk bagasi kabin.',
   'Ukuran 40 × 30 × 20 cm yang pas untuk batas bagasi kabin maskapai domestik. Dilengkapi tali trolley, kunci kombinasi, dan lapisan tahan air.',
   'Kulit sapi dan lapisan tahan air', '40 × 30 × 20 cm', 'Simpan di tempat kering dan bersihkan dengan kain lembut.',
-  '{Size Kabin,Kulit Sapi}', '{}',
+  '{Size Kabin,Kulit Sapi}', '{assets/img/products/tas-travel-kulit.webp}',
   now() - interval '38 days'
 ),
 (
@@ -89,7 +81,7 @@ insert into public.products (
   'Kulit pull-up, outsole karet anti slip.',
   'Sepatu formal dengan konstruksi yang nyaman dipakai seharian. Upper dari kulit pull-up dengan outsole karet anti slip. Dibuat oleh perajin lokal.',
   'Kulit pull-up dan sol karet', 'Ukuran tersedia 39–44', 'Bersihkan dan poles kulit secara berkala.',
-  '{Handmade,Anti Slip}', '{}',
+  '{Handmade,Anti Slip}', '{assets/img/products/sepatu-kulit.webp}',
   now() - interval '36 days'
 ),
 (
@@ -99,7 +91,7 @@ insert into public.products (
   'Sol busa ringan, nyaman untuk harian.',
   'Sandal dengan sol busa EVA yang ringan dan alas kulit yang nyaman. Praktis untuk dipakai harian maupun bepergian singkat.',
   'Kulit dan sol busa EVA', 'Ukuran tersedia 39–44', 'Lap hingga kering setelah terkena air.',
-  '{Ringan,Sehari-hari}', '{}',
+  '{Ringan,Sehari-hari}', '{assets/img/products/sandal-kulit.webp}',
   now() - interval '34 days'
 ),
 (
@@ -109,7 +101,7 @@ insert into public.products (
   'Ukiran 3D motif koi dari kayu jati pilihan.',
   'Diukir tangan dari kayu jati solid oleh pengrajin lokal. Motif koi melambangkan ketekunan dan keberanian. Sudah termasuk rantai dan kotak penyimpanan.',
   'Kayu jati solid', 'Liontin sekitar 4 × 3 cm', 'Hindari air dan simpan di kotak saat tidak dipakai.',
-  '{Hand Carved,Jati Solid}', '{}',
+  '{Hand Carved,Jati Solid}', '{assets/img/products/kalung-koi.webp}',
   now() - interval '32 days'
 ),
 (
@@ -119,7 +111,7 @@ insert into public.products (
   'Panel relief 60x90 cm, bisa custom motif.',
   'Panel ukir untuk dinding ukuran 60 × 90 cm. Motif dapat disesuaikan permintaan seperti ikan, gunung, atau wayang. Estimasi pengerjaan empat belas hari kerja.',
   'Kayu jati solid', '60 × 90 cm; motif dapat dipesan khusus', 'Bersihkan dengan kemoceng atau kain kering.',
-  '{Custom,Panel Dinding}', '{}',
+  '{Custom,Panel Dinding}', '{assets/img/products/relief-kayujati-motif-ikan.webp}',
   now() - interval '30 days'
 ),
 (

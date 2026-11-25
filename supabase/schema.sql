@@ -1,14 +1,4 @@
--- ============================================================================
--- Toko Kriya Sidoarjo — Skema Database Supabase (v2)
--- ----------------------------------------------------------------------------
--- Cara pakai:
---   1. Buka project Supabase lu di https://supabase.com
---   2. Masuk menu "SQL Editor" -> "New query"
---   3. Copy seluruh isi file ini, paste, lalu klik "Run"
---
--- File ini membuat: tabel, fungsi (RPC), trigger, kebijakan keamanan (RLS),
--- dan bucket storage untuk foto produk. Aman dijalankan berulang kali.
--- ============================================================================
+
 
 create extension if not exists pgcrypto;
 
