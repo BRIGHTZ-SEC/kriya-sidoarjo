@@ -834,7 +834,7 @@ using (
 drop policy if exists reviews_insert_own on public.reviews;
 create policy reviews_insert_own on public.reviews
 for insert to authenticated
-with check (user_id = auth.uid() and status = 'pending');
+with check (user_id = auth.uid() and status in ('pending', 'published'));
 
 drop policy if exists reviews_update on public.reviews;
 create policy reviews_update on public.reviews
