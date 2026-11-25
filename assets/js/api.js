@@ -263,7 +263,7 @@ export async function submitReview({ productId, orderId, rating, text }) {
     author: profile?.full_name || user.email?.split('@')[0] || 'Pembeli',
     rating,
     text,
-    status: 'pending',
+    status: 'published',
   });
   if (error) throw new Error(error.message);
   return true;

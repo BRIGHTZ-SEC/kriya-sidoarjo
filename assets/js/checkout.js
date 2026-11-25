@@ -220,7 +220,7 @@ function renderCheckout(summary, settings, user) {
         <div class="sum-rows">
           <div class="sum-row"><span>Subtotal</span><b>${rupiah(summary.subtotal)}</b></div>
           ${summary.discount > 0 ? `<div class="sum-row"><span>Diskon voucher</span><b style="color:var(--ok)">−${rupiah(summary.discount)}</b></div>` : ''}
-          <div class="sum-row"><span>Ongkir (${shippingMethod === 'same-day' ? 'same day' : shippingMethod})</span><b class="${shipCost === 0 ? 'free' : ''}">${shipCost === 0 ? 'GRATIS' : rupiah(shipCost)}</b></div>
+          <div class="sum-row" id="co-ship-row"><span>Ongkir (${shippingMethod === 'same-day' ? 'same day' : shippingMethod})</span><b class="${shipCost === 0 ? 'free' : ''}">${shipCost === 0 ? 'GRATIS' : rupiah(shipCost)}</b></div>
           ${fee > 0 ? `<div class="sum-row"><span>Biaya COD</span><b>${rupiah(fee)}</b></div>` : ''}
         </div>
 
@@ -322,6 +322,12 @@ function updateTotals(summary, settings) {
   const btn = qs('#btn-place', root);
   if (el) el.textContent = rupiah(total);
   if (btn) btn.innerHTML = `${icon('check')} Buat Pesanan — ${rupiah(total)}`;
+
+  /* Update baris ongkir (label + nilai) supaya sesuai pilihan */
+  const shipRow = qs('#co-ship-row', root);
+  if (shipRow) {
+    shipRow.innerHTML = `<span>Ongkir (${shippingMethod === 'same-day' ? 'same day' : shippingMethod})</span><b class="${shipCost === 0 ? 'free' : ''}">${shipCost === 0 ? 'GRATIS' : rupiah(shipCost)}</b>`;
+  }
 
   /* Tampilkan peringatan COD */
   const warn = qs('#cod-warn', root);

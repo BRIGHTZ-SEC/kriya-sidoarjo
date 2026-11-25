@@ -613,8 +613,8 @@ function closeOrderDrawer() {
 const rState = { status: '', page: 1, perPage: 12 };
 async function renderReviews(el) {
   el.innerHTML = '<div class="view-head"><div><h3>Ulasan</h3><p>' + icon('star') + ' Moderasi ulasan pembeli — publish, sembunyikan, balas.</p></div></div><div class="panel"><div class="status-tabs" id="r-tabs"></div><div id="r-table-wrap" style="padding:0"><div class="panel-body">' + skelRows(6) + '</div></div><div id="r-foot" class="list-foot"></div></div>';
-  const tabs = ['', 'pending', 'published', 'hidden'];
-  const labels = { '': 'Semua', pending: 'Pending', published: 'Published', hidden: 'Hidden' };
+  const tabs = ['', 'published', 'hidden'];
+  const labels = { '': 'Semua', published: 'Published', hidden: 'Hidden' };
   document.getElementById('r-tabs').innerHTML = tabs.map(function (t) { return '<button class="chip ' + (rState.status === t ? 'is-active' : '') + '" data-rstatus="' + t + '">' + labels[t] + '</button>'; }).join('');
   qsa('[data-rstatus]').forEach(function (b) { b.addEventListener('click', function () { rState.status = b.dataset.rstatus; rState.page = 1; qsa('[data-rstatus]').forEach(function (x) { x.classList.toggle('is-active', x === b); }); loadReviewsTable(); }); });
   loadReviewsTable();
