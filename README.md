@@ -14,6 +14,20 @@ Backend memakai Supabase (PostgreSQL + Auth + Storage).
 - `supabase/schema.sql` — skema DB + RPC + RLS + storage bucket
 - `supabase/seed.sql` — data katalog contoh (kategori, produk, voucher, ulasan)
 
+## Menjalankan di lokal
+
+Jangan buka `index.html` dengan double-click (`file://`) — browser akan
+memblokir modul ES (`assets/js/*.js`) karena CORS. Jalankan server statis:
+
+```bash
+python -m http.server 8000
+```
+
+lalu buka http://localhost:8000.
+
+Di Windows bisa juga langsung klik `serve.bat`, atau pakai ekstensi
+**Live Server** di VS Code.
+
 ## Setup Supabase (wajib agar toko berfungsi)
 
 1. Buat project baru di https://supabase.com (gratis). Catat **Project URL**

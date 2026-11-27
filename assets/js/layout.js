@@ -41,7 +41,10 @@ export function initLayout({ active = '' } = {}) {
     <div class="container header-inner">
       <a href="index.html" class="brand" aria-label="Toko Kriya Sidoarjo — beranda">
         <span class="brand-logo">${icon('batik')}</span>
-        <span class="brand-name">Toko <b>Kriya</b></span>
+        <span class="brand-name">
+          <span class="brand-jawa" lang="jv" aria-hidden="true">ꦠꦺꦴꦏꦺꦴ ꦏꦿꦶꦪ</span>
+          <span class="brand-latin">Toko <b>Kriya</b></span>
+        </span>
       </a>
 
       <nav class="header-nav" aria-label="Menu utama">
@@ -65,6 +68,59 @@ export function initLayout({ active = '' } = {}) {
       </div>
     </div>`;
   document.body.prepend(header);
+
+  /* ---------- Banner judul aksara Jawa (paling atas situs) ---------- */
+  const jawaBanner = document.createElement('div');
+  jawaBanner.className = 'jawa-banner';
+  jawaBanner.innerHTML = `
+    <div class="jawa-banner-batik" aria-hidden="true"></div>
+    <svg class="jawa-flourish jawa-flourish-l" viewBox="0 0 180 120" aria-hidden="true">
+      <g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M4 60h44"/>
+        <path d="M48 60c0-16 12-28 28-28 12 0 22 9 22 21 0 10-8 18-18 18-8 0-14-6-14-14 0-6 5-11 11-11 5 0 9 4 9 9"/>
+        <path d="M48 60c0 16 12 28 28 28 12 0 22-9 22-21"/>
+        <path d="M94 32c10-8 24-8 34 0M94 88c10 8 24 8 34 0"/>
+        <path d="M128 60h44"/>
+        <circle cx="92" cy="60" r="3.5" fill="currentColor"/>
+      </g>
+    </svg>
+    <svg class="jawa-flourish jawa-flourish-r" viewBox="0 0 180 120" aria-hidden="true">
+      <g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M4 60h44"/>
+        <path d="M48 60c0-16 12-28 28-28 12 0 22 9 22 21 0 10-8 18-18 18-8 0-14-6-14-14 0-6 5-11 11-11 5 0 9 4 9 9"/>
+        <path d="M48 60c0 16 12 28 28 28 12 0 22-9 22-21"/>
+        <path d="M94 32c10-8 24-8 34 0M94 88c10 8 24 8 34 0"/>
+        <path d="M128 60h44"/>
+        <circle cx="92" cy="60" r="3.5" fill="currentColor"/>
+      </g>
+    </svg>
+    <svg class="jawa-gunungan" viewBox="0 0 240 220" aria-hidden="true">
+      <path d="M120 10C132 44 176 58 188 96c10 32-10 70-40 78-12 3-20-2-28-8-8 6-16 11-28 8-30-8-50-46-40-78 12-38 56-52 68-86Z"
+        fill="currentColor" opacity=".12"/>
+      <path d="M120 10C132 44 176 58 188 96c10 32-10 70-40 78-12 3-20-2-28-8-8 6-16 11-28 8-30-8-50-46-40-78 12-38 56-52 68-86Z"
+        fill="none" stroke="currentColor" stroke-width="2" opacity=".5"/>
+      <path d="M120 52v96M120 84c-14 0-24-7-28-18 11-2 21 1 28 10 7-9 17-12 28-10-4 11-14 18-28 18Zm0 32c-16 0-27-8-31-21 12-2 23 2 31 12 8-10 19-14 31-12-4 13-15 21-31 21Z"
+        fill="currentColor" opacity=".16" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/>
+      <circle cx="120" cy="64" r="4.5" fill="currentColor" opacity=".4"/>
+      <path d="M100 150c6 6 13 9 20 9s14-3 20-9" fill="none" stroke="currentColor" stroke-width="2" opacity=".32"/>
+    </svg>
+
+    <div class="container jawa-banner-inner">
+      <span class="jawa-kicker" lang="jv" aria-hidden="true">ꦱꦸꦒꦼꦁꦫꦮꦸꦃ</span>
+      <a class="jawa-title" href="index.html" lang="jv" aria-label="Toko Kriya Sidoarjo">ꦠꦺꦴꦏꦺꦴ ꦏꦿꦶꦪ ꦱꦶꦢꦺꦴꦲꦂꦗꦺꦴ</a>
+      <svg class="jawa-divider" viewBox="0 0 280 24" aria-hidden="true">
+        <g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M6 12h92M182 12h92"/>
+          <path d="M112 12c6-7 16-7 22 0-6 7-16 7-22 0Z"/>
+          <path d="M168 12c-6-7-16-7-22 0 6 7 16 7 22 0Z"/>
+          <path d="M140 5.5l6.5 6.5-6.5 6.5-6.5-6.5z"/>
+        </g>
+        <circle cx="140" cy="12" r="2.2" fill="currentColor"/>
+      </svg>
+      <span class="jawa-sub">Toko Kriya Sidoarjo · Batik Tulis, Kulit &amp; Ukiran Kayu</span>
+    </div>
+    <div class="jawa-tumpal" aria-hidden="true"></div>`;
+  document.body.prepend(jawaBanner);
 
   /* ---------- Nav bawah (ponsel) ---------- */
   const bottomNav = document.createElement('nav');
@@ -92,7 +148,10 @@ export function initLayout({ active = '' } = {}) {
         <div class="footer-brand">
           <a href="index.html" class="brand">
             <span class="brand-logo">${icon('batik')}</span>
-            <span class="brand-name">Toko <b>Kriya</b></span>
+            <span class="brand-name">
+              <span class="brand-jawa" lang="jv" aria-hidden="true">ꦠꦺꦴꦏꦺꦴ ꦏꦿꦶꦪ ꦱꦶꦢꦺꦴꦲꦂꦗꦺꦴ</span>
+              <span class="brand-latin">Toko <b>Kriya</b></span>
+            </span>
           </a>
           <p>Kriya asli tangan perajin Sidoarjo — batik tulis, kulit, dan ukiran kayu jati. Dibuat pelan-pelan, dipakai bertahun-tahun.</p>
           <ul class="footer-contact">

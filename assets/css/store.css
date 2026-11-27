@@ -44,14 +44,30 @@
 .brand-logo .icon { width: 22px; height: 22px; vertical-align: 0; }
 
 .brand-name {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  line-height: 1.05;
+  white-space: nowrap;
+}
+
+.brand-jawa {
+  font-family: 'Noto Sans Javanese', var(--font-display), serif;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.5;
+  letter-spacing: 0.02em;
+  color: var(--gold);
+}
+
+.brand-latin {
   font-family: var(--font-display);
-  font-size: 21px;
+  font-size: 18px;
   font-weight: 800;
   letter-spacing: -0.02em;
   color: var(--ink-strong);
-  white-space: nowrap;
 }
-.brand-name b { color: var(--clay-strong); }
+.brand-latin b { color: var(--clay-strong); }
 
 .header-nav {
   display: flex;
@@ -119,6 +135,168 @@
 
 @media (max-width: 1240px) and (min-width: 921px) {
   .brand-name { display: none; }
+}
+
+/* ------------------------------ Banner judul aksara Jawa ------------------------------ */
+
+.jawa-banner {
+  --jawa-gold: #e9c77f;
+  --jawa-gold-soft: #f7e3b4;
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  color: var(--jawa-gold-soft);
+  background:
+    radial-gradient(130% 150% at 50% -30%, #7a3d24 0%, #4a2414 42%, #2a130b 100%);
+  border-bottom: 1px solid rgba(233, 199, 127, 0.35);
+}
+
+.jawa-banner-batik {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140' viewBox='0 0 140 140'%3E%3Cg fill='none' stroke='%23f0c979' stroke-width='1.8' stroke-linecap='round' opacity='0.5'%3E%3Cpath d='M-30 120C10 96 6 54 46 34S106 6 170 30'/%3E%3Cpath d='M-30 140C10 116 6 74 46 54S106 26 170 50'/%3E%3Cpath d='M-30 100C10 76 6 34 46 14S106-14 170 10'/%3E%3C/g%3E%3Cg fill='%23f0c979' opacity='0.4'%3E%3Ccircle cx='35' cy='35' r='2.4'/%3E%3Ccircle cx='105' cy='105' r='2.4'/%3E%3Ccircle cx='35' cy='105' r='2.4'/%3E%3Ccircle cx='105' cy='35' r='2.4'/%3E%3C/g%3E%3C/svg%3E");
+  background-size: 140px 140px;
+  opacity: 0.55;
+  mix-blend-mode: soft-light;
+  pointer-events: none;
+}
+
+.jawa-banner::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: radial-gradient(70% 130% at 50% 50%, transparent 30%, rgba(20, 8, 4, 0.55) 100%);
+  pointer-events: none;
+}
+
+.jawa-flourish {
+  position: absolute;
+  top: 50%;
+  z-index: -1;
+  width: 170px;
+  height: auto;
+  color: var(--jawa-gold);
+  opacity: 0.4;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+.jawa-flourish-l { left: max(12px, 4vw); }
+.jawa-flourish-r { right: max(12px, 4vw); transform: translateY(-50%) scaleX(-1); }
+
+.jawa-gunungan {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  z-index: -1;
+  width: min(380px, 62vw);
+  height: auto;
+  transform: translate(-50%, -50%);
+  color: var(--jawa-gold);
+  opacity: 0.9;
+  pointer-events: none;
+}
+
+.jawa-banner-inner {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 4px;
+  padding-top: 20px;
+  padding-bottom: 24px;
+}
+
+.jawa-kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-family: 'Noto Sans Javanese', var(--font-display), serif;
+  font-size: 13.5px;
+  font-weight: 500;
+  line-height: 1.6;
+  letter-spacing: 0.08em;
+  color: rgba(247, 227, 180, 0.78);
+}
+.jawa-kicker::before,
+.jawa-kicker::after {
+  content: '';
+  width: 30px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, currentColor);
+}
+.jawa-kicker::after { transform: scaleX(-1); }
+
+.jawa-title {
+  font-family: 'Noto Sans Javanese', var(--font-display), serif;
+  font-size: clamp(22px, 4.8vw, 48px);
+  font-weight: 600;
+  line-height: 1.6;
+  letter-spacing: 0.02em;
+  color: var(--jawa-gold-soft);
+  text-shadow: 0 2px 20px rgba(233, 199, 127, 0.3);
+  transition: filter 0.2s ease;
+  max-width: 100%;
+  white-space: normal;
+}
+.jawa-title:hover { filter: brightness(1.08); }
+
+@supports ((-webkit-background-clip: text) or (background-clip: text)) {
+  .jawa-title {
+    background: linear-gradient(180deg, #fff8e4 0%, #f2d292 45%, #cf9f4c 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+    text-shadow: none;
+    filter: drop-shadow(0 2px 12px rgba(233, 199, 127, 0.22));
+  }
+  .jawa-title:hover { filter: drop-shadow(0 2px 14px rgba(233, 199, 127, 0.4)) brightness(1.05); }
+}
+
+.jawa-divider {
+  width: min(340px, 72%);
+  height: 20px;
+  color: rgba(233, 199, 127, 0.7);
+}
+
+.jawa-sub {
+  font-size: 11.5px;
+  font-weight: 600;
+  line-height: 1.6;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(247, 227, 180, 0.68);
+  max-width: 100%;
+}
+
+.jawa-tumpal {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 12px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='12' viewBox='0 0 24 12'%3E%3Cpath d='M0 12L12 0l12 12z' fill='%23e9c77f' fill-opacity='0.6'/%3E%3C/svg%3E");
+  background-size: 24px 12px;
+  background-repeat: repeat-x;
+  opacity: 0.65;
+  pointer-events: none;
+}
+
+@media (max-width: 1100px) {
+  .jawa-flourish { display: none; }
+}
+
+@media (max-width: 640px) {
+  .jawa-banner-inner { padding-top: 15px; padding-bottom: 20px; gap: 2px; }
+  .jawa-kicker { font-size: 11px; }
+  .jawa-kicker::before,
+  .jawa-kicker::after { width: 18px; }
+  .jawa-sub { font-size: 10px; letter-spacing: 0.1em; }
+  .jawa-gunungan { width: 70vw; }
 }
 
 /* ------------------------------ Nav bawah (mobile) ------------------------------ */

@@ -9,6 +9,9 @@ Thumbs.db
 # Node (kalau pakai npx serve / tooling)
 node_modules/
 
+# Artefak lokal
+*.zip
+
 # Impeccable tooling (local only)
 .agent/
 .gemini/
